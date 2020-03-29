@@ -42,7 +42,7 @@ class CategoryController extends BaseController
     {
         $item = new BlogCategory();
         $categoryList = $this->blogCategoryRepository->getForComboBox();
-        return view('blog.admin.categories.edit',
+        return view('blog.admin.categories.create',
             compact('item', 'categoryList'));
     }
 

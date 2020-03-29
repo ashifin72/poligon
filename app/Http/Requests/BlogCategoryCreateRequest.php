@@ -25,11 +25,8 @@ class BlogCategoryCreateRequest extends FormRequest
     {
         return [
             'title' => 'required|min:5|max:200',
-<<<<<<< HEAD
-            'slug' => 'max:200|unique:blog_categories,slug',
-=======
+            'slug' => 'max:200',
             'slug '=> 'max:200',
->>>>>>> 98b5a9a... create
             'description' => 'string|max:500|min:3',
             'parent_id'=> 'required|integer|exists:blog_categories,id',
         ];

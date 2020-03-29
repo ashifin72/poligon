@@ -5,8 +5,7 @@
     @php /** @var \App\Models\BlogPost $item */   @endphp
     <div class="container">
         @include('blog.admin.includes.result_messages')
-        <form method="POST" action="{{route('blog.admin.posts.update', $item->id)}}">
-            @method('PATCH')
+        <form method="POST" action="{{route('blog.admin.posts.store', $item->id)}}">
             @csrf
             <div class="row justify-content-center">
                 <div class="col-md-8">
