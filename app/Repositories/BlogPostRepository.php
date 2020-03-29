@@ -55,4 +55,5 @@ class BlogPostRepository extends CoreRepository
      *
      */
 
+
 }

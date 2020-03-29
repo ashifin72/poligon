@@ -7,7 +7,7 @@ use App\Models\BlogCategory;
 use Illuminate\Http\Request;
 use App\Http\Requests\BlogCategoryUpdateRequest;
 use App\Repositories\BlogCategoryRepository;
-
+use Illuminate\Support\Str;
 
 class CategoryController extends BaseController
 {
@@ -111,7 +111,7 @@ class CategoryController extends BaseController
         }
         $data = $request->all();
         if (empty($data['slug'])) { // сели  slug  пустой то генерируем из тайтла
-            $data['slug'] = str_slug($data['title']);
+            $data['slug'] = Str::slug($data['title']);
         }
         $result = $item
             ->fill($data)

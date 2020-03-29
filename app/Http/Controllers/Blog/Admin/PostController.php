@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Blog\Admin;
 
 use App\Repositories\BlogPostRepository;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
+use Illuminate\Support\Str;
 use App\Repositories\BlogCategoryRepository;
+use App\Http\Requests\BlogPostUpdateRequest;
 
 class PostController extends BaseController
 {
@@ -98,9 +100,33 @@ class PostController extends BaseController
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(BlogPostUpdateRequest $request, $id)
     {
-        dd(__METHOD__ , $request->all() , $id);
+        $item = $this->blogPostRepository->getEdit($id);
+        if (empty($item)){
+            return back()
+                ->withErrors(['msg'=> "Запись [{$id}] не найденна!"])
+                ->withInput();
+        }
+        $data = $request->all();
+        if (empty($data['slug'])){
+            $data['slug']= Str::slug($data['title']);
+        }
+        if (empty($item->published_at) && $data['is_published']){
+            $data['published_at']= Carbon::now();
+        }
+        $result = $item->update($data);
+
+
+        if ($result) {
+            return redirect()->route('blog.admin.posts.edit', $item->id)
+                ->with(['success' => 'Успешное сохраненно!']);
+        } else {
+            return back()
+                // если есть ошибка выдай и отправь назад на исходную точку с сохранением данных в инпуте
+                ->withErrors(['msg' => 'Ошибка сохранения!',])
+                ->withInput();
+        }
     }
 
     /**

@@ -40,7 +40,7 @@
                 </div>
                 <div class="form-group">
                     <label for="title">Опубликованно</label>
-                    <input type="text" class="form-control" value="{{$item->is_published}}" disabled>
+                    <input type="text" class="form-control" value="{{$item->published_at}}" disabled>
                 </div>
             </div>
         </div>
