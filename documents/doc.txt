@@ -74,6 +74,9 @@ php artisan route:list > routes.txt
 для контроллера постов
 php artisan make:controller Blog/Admin/PostController -r
 
+ Создание реквеста
+php artisan make:request BlogPostCreateRequest
+
 Создаем observer
 php artisan make:observer BlogPostObserver --model=Models\BlogPost
 php artisan make:observer BlogCategoryObserver --model=Models\BlogCategory

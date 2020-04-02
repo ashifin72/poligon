@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers\Blog\Admin;
 
+use App\Models\BlogPost;
 use App\Repositories\BlogPostRepository;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use App\Repositories\BlogCategoryRepository;
 use App\Http\Requests\BlogPostUpdateRequest;
+use App\Http\Requests\BlogPostCreateRequest;
+
 
 class PostController extends BaseController
 {
@@ -49,7 +52,9 @@ class PostController extends BaseController
      */
     public function create()
     {
-        //
+        $item = new BlogPost();
+        $categoryList = $this->blogCategoryRepository->getForComboBox();
+        return view('blog.admin.posts.create', compact('item', 'categoryList'));
     }
 
     /**
@@ -58,9 +63,20 @@ class PostController extends BaseController
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(BlogPostCreateRequest $request)
     {
-        //
+        $data = $request->input();
+        $item = (new BlogPost())->create($data);
+
+        if ($item) {
+            return redirect()->route('blog.admin.posts.create', $item->id)
+                ->with(['success' => 'Успешное сохраненно!']);
+        } else {
+            return back()
+                // если есть ошибка выдай и отправь назад на исходную точку с сохранением данных в инпуте
+                ->withErrors(['msg' => 'Ошибка сохранения!',])
+                ->withInput();
+        }
     }
 
     /**
@@ -103,9 +119,9 @@ class PostController extends BaseController
     public function update(BlogPostUpdateRequest $request, $id)
     {
         $item = $this->blogPostRepository->getEdit($id);
-        if (empty($item)){
+        if (empty($item)) {
             return back()
-                ->withErrors(['msg'=> "Запись [{$id}] не найденна!"])
+                ->withErrors(['msg' => "Запись [{$id}] не найденна!"])
                 ->withInput();
         }
         $data = $request->all();
@@ -132,6 +148,6 @@ class PostController extends BaseController
      */
     public function destroy($id)
     {
-        dd(__METHOD__ , $id);
+        dd(__METHOD__, $id);
     }
 }

@@ -17,15 +17,7 @@
             </div>
         </form>
         <br>
-        <form method="post" action="{{route('blog.admin.posts.destroy', $item->id)}}">
-            @method('DELETE')
-            @csrf
-            <div class="row justify-content-center">
-                <div class="col-md-8">
-                    <button type="submit" class="btn btn-primary">Удалить запись</button>
-                </div>
 
-        </form>
 
     </div>
 @endsection

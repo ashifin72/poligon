@@ -50,9 +50,7 @@ class CategoryController extends BaseController
     public function store(BlogCategoryCreateRequest $request)
     {
         $data = $request->input();// получаем  проверенные данные из формы
-        if (empty($data['slug'])) { // сели  slug  пустой то генерируем из тайтла
-            $data['slug'] = str_slug($data['title']);
-        }
+
 
         // создаем объект
 //        $item = new BlogCategory($data);
@@ -110,9 +108,7 @@ class CategoryController extends BaseController
                 ->withInput();
         }
         $data = $request->all();
-        if (empty($data['slug'])) { // сели  slug  пустой то генерируем из тайтла
-            $data['slug'] = Str::slug($data['title']);
-        }
+
         $result = $item
             ->fill($data)
             ->save();
