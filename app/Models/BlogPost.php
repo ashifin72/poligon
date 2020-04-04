@@ -21,15 +21,25 @@ class BlogPost extends Model
         'published_at',
     ];
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * статья пренадлежит категории
+     * названия полей в БД едентичны
+     */
+
     public function category()
     {
-        // статья пренадлежит категории
         return $this->belongsTo(BlogCategory::class);
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * статья пренадлежит Пользователю
+     * названия полей в БД едентичны
+     */
+
     public function user()
     {
-        // статья пренадлежит Пользователю
         return $this->belongsTo(User::class);
     }
 }

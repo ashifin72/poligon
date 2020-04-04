@@ -8,6 +8,8 @@
                     <a href="{{route('blog.admin.posts.create')}}" class="btn btn-primary">Добавить Пост</a>
                 </nav>
                 <div class="card">
+                    @include('blog.admin.includes.result_messages')
+
                     <div class="card-body">
                         <table class="table table-hover">
                             <thead>

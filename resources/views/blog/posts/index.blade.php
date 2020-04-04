@@ -7,7 +7,7 @@
             <div class="col-md-1">
               {{$item->id}}
             </div>
-            <div class="col-md-9">
+            <div class="col-md-3">
                 {{$item->title}}
             </div>
             <div class="col-md-2">

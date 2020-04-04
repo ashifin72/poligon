@@ -27,6 +27,7 @@
 |        | PUT|PATCH | blog/posts/{post}                     | blog.posts.update            | App\Http\Controllers\Blog\PostController@update                        | web                                                  |
 |        | DELETE    | blog/posts/{post}                     | blog.posts.destroy           | App\Http\Controllers\Blog\PostController@destroy                       | web                                                  |
 |        | GET|HEAD  | blog/posts/{post}/edit                | blog.posts.edit              | App\Http\Controllers\Blog\PostController@edit                          | web                                                  |
+|        | GET|HEAD  | digging_deeper/collections            | digging_deeper.collections   | App\Http\Controllers\DiggingDeeperController@collections               | web                                                  |
 |        | GET|HEAD  | home                                  | home                         | App\Http\Controllers\HomeController@index                              | web,auth                                             |
 |        | POST      | login                                 |                              | App\Http\Controllers\Auth\LoginController@login                        | web,guest                                            |
 |        | GET|HEAD  | login                                 | login                        | App\Http\Controllers\Auth\LoginController@showLoginForm                | web,guest                                            |

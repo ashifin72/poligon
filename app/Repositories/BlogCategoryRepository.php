@@ -52,12 +52,21 @@ class BlogCategoryRepository extends CoreRepository
 
     }
 
+    /**
+     * @param null $perPage
+     * @return mixed
+     *
+     */
+
     public function getAllWithPaginate($perPage = null)
     {
         $columns = ['id', 'title', 'parent_id'];
         $result = $this
             ->startConditions()
             ->select($columns)
+            ->with([ // включаем жадную для вывода парент-категории
+                'parentCategory:id,title',
+            ])
             ->paginate($perPage);
         return $result;
     }

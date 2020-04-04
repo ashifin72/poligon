@@ -61,9 +61,14 @@ php artisan make:controller Blog/BaseController
 для вывода постов
 php artisan make:controller Blog/PostController --resource
 
-Аутентификация
+Аутентификация  Установка фронтенда из коробки
  php artisan make:auth
   php artisan migrate
+
+  начиная с 6 версии
+php composer.phar require laravel/ui
+php artisan ui vue --auth
+
 15. создаем контроллер  категорий
 php artisan make:controller Blog/Admin/CategoryController --resource
 16/  прописываем маржруты
@@ -80,6 +85,12 @@ php artisan make:request BlogPostCreateRequest
 Создаем observer
 php artisan make:observer BlogPostObserver --model=Models\BlogPost
 php artisan make:observer BlogCategoryObserver --model=Models\BlogCategory
+
+ Создаем коллекции контроллер
+
+ php artisan make:controller DiggingDeeperController
+
+
 
 
 
